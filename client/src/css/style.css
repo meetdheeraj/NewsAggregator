@@ -1,0 +1,70 @@
+article
+     {
+
+       text-align: center;
+       width: 70%;
+       margin: auto;
+     }
+     #maindiv
+     {
+       background-color: #e3e3e3 ;
+
+
+     }
+     img
+     {
+       float: left;
+     }
+     #description
+     {
+       background-color:#e3e3e3 ;
+       float:right;
+     }
+     a
+     {
+       color: black;
+     }
+     a:hover
+     {
+       color:maroon;
+       text-decoration:underline;
+     }
+     #maindiv{
+         width:800px;
+         height:200px;
+     }
+     .newsPic{
+         width:200px;
+         height:200px;
+     }
+     article{
+         padding-bottom: 20px;
+     }
+     .textTitle{
+         font-weight:bold;
+         text-decoration:none;
+         font-size:16px;
+	     line-height:18px;
+
+     }
+     #searchId{
+    width: 70%;
+    height: 60px;
+    margin-left: 175px;
+    border-radius: 2px;
+
+}
+
+#btn{
+    color: black;
+    width: 15%;
+    height:85px;
+    margin-left: 550px;
+}
+.searchBar{
+  padding-top: 20px;
+}
+.newsBox{
+  margin: auto;
+  padding-top: 20px;
+}

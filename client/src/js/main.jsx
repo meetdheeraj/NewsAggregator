@@ -1,5 +1,6 @@
 
 import 'file?name=[name].[ext]!../index.html';
+import 'file?name=[name].[ext]!../css/style.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
