@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1275f8c77e915a2d0e66"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "16911b2e1644f65d20ee"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -13900,53 +13900,16 @@
 	
 			var _this = _possibleConstructorReturn(this, (UpdateDeleteComponent.__proto__ || Object.getPrototypeOf(UpdateDeleteComponent)).call(this));
 	
-			_this.updateNews = _this.updateNews.bind(_this);
-			_this.deleteNews = _this.deleteNe;
-			ws.bind(_this);
+			_this.updateSource = _this.updateSource.bind(_this);
 			return _this;
 		}
 	
 		_createClass(UpdateDeleteComponent, [{
-			key: "updateNews",
-			value: function updateNews() {
-				console.log("updateNews");
-	
-				var jsonStr = JSON.stringify(this.props.item);
-				console.log(jsonStr);
-				$.ajax({
-					url: "http://localhost:8080/newsGet/saveNews",
-					type: "POST",
-					dataType: 'APPLICATION/JSON',
-					data: this.props.item,
-					success: function (msg) {
-						console.log(msg);
-						console.log("Saved Successfully!!");
-					}.bind(this),
-					error: function (err) {
-						console.log("Error during AJAX Save");
-					}.bind(this)
-				});
-			}
+			key: "updateSource",
+			value: function updateSource() {}
 		}, {
-			key: "deleteNews",
-			value: function deleteNews() {
-				console.log("deleteNews");
-				var jsonStr = JSON.stringify(this.props.item);
-				console.log(jsonStr);
-				$.ajax({
-					url: "http://localhost:8080/newsGet/saveNews",
-					type: "POST",
-					dataType: 'APPLICATION/JSON',
-					data: this.props.item,
-					success: function (msg) {
-						console.log(msg);
-						console.log("Saved Successfully!!");
-					}.bind(this),
-					error: function (err) {
-						console.log("Error during AJAX Save");
-					}.bind(this)
-				});
-			}
+			key: "deleteSource",
+			value: function deleteSource() {}
 		}, {
 			key: "render",
 			value: function render() {
@@ -13954,8 +13917,8 @@
 				return _react2.default.createElement(
 					"div",
 					null,
-					_react2.default.createElement("input", { type: "button", name: "Update", value: "Update", onClick: this.updateNews }),
-					_react2.default.createElement("input", { type: "button", name: "Delete", value: "Delete", onClick: this.deleteNews })
+					_react2.default.createElement("input", { type: "button", name: "Update", value: "Update", onClick: this.updateSource }),
+					_react2.default.createElement("input", { type: "button", name: "Delete", value: "Delete", onClick: this.deleteSource })
 				);
 			}
 		}]);
