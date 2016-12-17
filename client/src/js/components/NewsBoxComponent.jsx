@@ -20,6 +20,7 @@ return(
        {
          this.props.news.map(function(item){
          return(
+         console.log(item);
          <div>
          <span><NewsItemComponent item={item}/></span>
          <span><UpdateDeleteComponent item={item}/></span>
