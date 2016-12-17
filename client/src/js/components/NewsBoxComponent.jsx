@@ -17,7 +17,7 @@ return(
        {
          this.props.news.map(function(item){
          return(
-         
+
          <div>
          <span><NewsItemComponent item={item}/></span>
          <span><SaveItemComponent item={item}/></span>
