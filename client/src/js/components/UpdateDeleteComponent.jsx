@@ -5,7 +5,8 @@ constructor(){
 super();
 
 this.updateNews=this.updateNews.bind(this);
-this.deleteNews=this.deleteNews.bind(this);
+this.deleteNews=this.deleteNe
+ws.bind(this);
 }
 
 updateNews()
