@@ -1,6 +1,7 @@
 import React from 'react';
 import NewsItemComponent from './NewsItemComponent.jsx';
 import UpdateDeleteComponent from './UpdateDeleteComponent.jsx';
+import SaveItemComponent from './SaveItemComponent.jsx';
 export default class NewsBoxComponent extends React.Component{
 constructor(){
     super();
@@ -8,11 +9,7 @@ constructor(){
 render(){
 console.log("NewsBoxComponent :: "+this.props.news);
 
-{/*
-  var newsCollection = this.props.news.map(function(element) {
-  return <NewsItemComponent newsObj={element}>;
-  });
-*/}
+
 
 return(
 
@@ -23,6 +20,7 @@ return(
          
          <div>
          <span><NewsItemComponent item={item}/></span>
+         <span><SaveItemComponent item={item}/></span>
          <span><UpdateDeleteComponent item={item}/></span>
          </div>
 

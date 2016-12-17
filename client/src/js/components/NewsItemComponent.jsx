@@ -52,7 +52,7 @@ console.log("Error during AJAX Save");
      <text>{this.props.item.description}</text>
      </div>
      </div>
-     <input type="button" className="btn btn-primary" value="Save" onClick={this.saveNews}></input>
+     
 
 
      </div>
