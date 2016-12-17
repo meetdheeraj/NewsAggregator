@@ -18,15 +18,15 @@ deleteSource()
 	}
 render(){
 
-	
-return(	
+
+return(
 			<div>
 			<input type="button"  name ="Update" value="Update" onClick={this.updateSource}/>
-			
+
 			<input type="button"  name ="Delete" value="Delete" onClick={this.deleteSource}/>
 			</div>
 
 
 		)
-	}	
+	}
 }
