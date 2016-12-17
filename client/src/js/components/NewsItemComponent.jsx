@@ -14,7 +14,7 @@ console.log("saveNews");
 var jsonStr=JSON.stringify(this.props.item);
 console.log(jsonStr);
 $.ajax({
-url: "http://localhost:8080/newsGet/saveNews",
+url: "/newsGet/saveNews",
 type: "POST",
 dataType: 'APPLICATION/JSON',
 data:this.props.item,

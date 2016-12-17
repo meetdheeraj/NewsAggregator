@@ -62,7 +62,7 @@ console.log("---------------There was an error while fetching data--------------
 }
   news=newsItem;
   console.log(news);
-  res.send(news);
+  res.json(news);
 });
 
 });
