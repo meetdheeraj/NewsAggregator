@@ -41,6 +41,7 @@ export default class FavNewsComponent extends React.Component{
   render() {
 
     return(
+
       <NewsBoxComponent news={this.state.news}/>
 
     )
