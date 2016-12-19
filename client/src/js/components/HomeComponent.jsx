@@ -8,9 +8,10 @@ import NewsBoxComponent from './NewsBoxComponent.jsx';
 export default class HomeComponent extends React.Component{
 constructor(){
 super();
-this.state={articles:[], data:"default"};
+this.state={articles:[], data:"default",isUpdate:false};
 
 this.fetchNewsJSON=this.fetchNewsJSON.bind(this);
+this.setUpdate=this.setUpdate.bind(this);
 
 }
 
@@ -41,6 +42,11 @@ this.setState({data:source});
 this.fetchNewsFromExternalAPI(source);
 }
 
+setUpdate(){
+console.log("inside setUpdate home");
+	this.setState({isUpdate:true});
+}
+
 
 render(){
 var d=this.state.data;
@@ -49,7 +55,7 @@ return(
 <div>
 
 <SearchComponent news={a} data={d} newsSource={this.fetchNewsJSON.bind(this)}/>
-<NewsBoxComponent news={a} />
+<NewsBoxComponent news={a} isUpdate={this.state.isUpdate} setUpdate={this.setUpdate.bind(this)}/>
 
 
 </div>

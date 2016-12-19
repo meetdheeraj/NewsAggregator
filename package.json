@@ -20,6 +20,7 @@
     "lodash": "^4.16.4",
     "mongoose": "^4.7.3",
     "morgan": "1.7.0",
+    "react-if-comp": "0.0.7",
     "serve-favicon": "2.3.2",
     "superagent": "^2.3.0",
     "superagent-auth-bearer": "0.0.1"

@@ -29,7 +29,7 @@ updateSource()
 					console.log("Error during Update"+err);
 				}.bind(this)
 			});
-
+			this.props.setUpdate();
 
 	}
 

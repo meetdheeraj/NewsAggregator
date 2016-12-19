@@ -12,6 +12,7 @@ render() {
            <li><Link to="/FavNewsComponent">FavNews</Link></li>
            <li><Link to="/contact">Contact Us</Link></li>
            <li><Link to="/about">About Us</Link></li>
+           <li><Link to="/Login">Login</Link></li>
         </ul>
       </div>
      </nav>
