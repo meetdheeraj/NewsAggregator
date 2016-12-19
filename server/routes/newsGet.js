@@ -18,16 +18,16 @@ router.post('/', function(req, res, next) {
 router.put('/updateNews', function(req, res, next) {
 
   console.log("updateNews");
-  var query = {'author':req.body.author};
+  var query = {'url':req.body.url};
   console.log(query);
-  req.body.author = 'Dheeraj';
+  req.body.title = req.body.title;
   console.log(req.newData);
   News.findOneAndUpdate(query, req.body, {upsert:false}, function(err, doc){
-    if (err) return res.send(500, { error: err });
+    if (err) return res.send("Error during save");
     return res.send("succesfully saved");
 });
 
-  res.send(req.body);
+  //res.send(req.body);
 });
 
 //delete
