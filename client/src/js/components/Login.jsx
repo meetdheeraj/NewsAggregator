@@ -14,6 +14,7 @@ console.log(this.state.username);
 pass(epass){
 this.setState({password:epass.target.value});
 }
+
 check(){
   console.log("check login");
 var login={
@@ -23,7 +24,7 @@ var login={
   console.log("login clicked");
   console.log(login);
   $.ajax({
-    url:"/users/findUser",
+    url:"/users/login",
     type: 'POST',
     data : login,
     success: function(data)
@@ -41,23 +42,27 @@ var login={
 }
 
 render(){
-return (
-    <div className="login-card">
-       <div>
-       <h1>Log-in</h1><br />
-       </div>
-    <form>
-    {/*
-      <input type="text" name="user" placeholder="Username" onChange={this.user.bind(this)}/><br/>
-      <input type="password" name="pass" placeholder="Password" onChange={this.pass.bind(this)}/><br/>
-      */}
-      <input type="text" name="user" placeholder="Username" ref="user"/><br/>
-      <input type="password" name="pass" placeholder="Password" ref="pass"/><br/>
-
-      <input type="submit" name="Login" className="login login-submit" value="Login" onClick={this.check.bind(this)} />
+return (     
+<div className="container">
+  <section id="logincontent">
+    <form action="">
+      <h1>Sign in...</h1>
+      <div>
+        <input type="text" ref="user" placeholder="Username" required="" id="username" />
+      </div>
+      <div>
+        <input type="password" ref="pass" placeholder="Password" required="" id="password" />
+      </div>
+      <div>
+        <input type="submit" onClick={this.check.bind(this)}value="Log in" />
+        
+        <a href="#">Register</a>
+      </div>
     </form>
+    
+  </section>
+</div>
 
-  </div>
 
    )
    }

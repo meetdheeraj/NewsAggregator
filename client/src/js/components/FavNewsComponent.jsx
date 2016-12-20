@@ -7,17 +7,14 @@ export default class FavNewsComponent extends React.Component{
 
   constructor(){
     super();
-    this.state={news:[]};
+    this.state={news:[],isUpdate:true};
   }
 
   componentDidMount()
   {
 
     console.log("componentDidMount");
-    //this.props.news="get lost news";
-    //console.log(this.props.item);
-  //  this.setState({news:"hello"});
-
+    
   $.ajax({
       url: "/newsGet/viewNews",
       type: "GET",
@@ -25,9 +22,7 @@ export default class FavNewsComponent extends React.Component{
       success : function(msg){
         console.log("Retrieve Successfully!!"+msg);
          this.setState({news:msg});
-          //  return(<NewsBoxComponent news={msg}/>)
-        //  var d=this.state.news;
-
+          
       }.bind(this),
       error: function(err){
         console.log("Error during Retrieving"+err);
@@ -42,7 +37,7 @@ export default class FavNewsComponent extends React.Component{
 
     return(
 
-      <NewsBoxComponent news={this.state.news}/>
+      <NewsBoxComponent isUpdate={this.state.isUpdate} news={this.state.news}/>
 
     )
   }

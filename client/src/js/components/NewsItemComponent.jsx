@@ -5,31 +5,10 @@ export default class NewsItemComponent extends React.Component
 constructor(){
 super();
 
-this.saveNews=this.saveNews.bind(this);
-}
-
-saveNews(){
-
-console.log("saveNews");
-var jsonStr=JSON.stringify(this.props.item);
-console.log(jsonStr);
-$.ajax({
-url: "/newsGet/saveNews",
-type: "POST",
-dataType: 'APPLICATION/JSON',
-data:this.props.item,
-success : function(msg){
-console.log(msg);
-console.log("Saved Successfully!!");
-}.bind(this),
-error: function(err){
-console.log("Error during AJAX Save");
-}.bind(this)
-});
-
-
 
 }
+
+
 
 
  render()
@@ -38,7 +17,7 @@ console.log("Error during AJAX Save");
 
 
    return (
-     <article>
+     <article id="newsItem">
 
      <div className="col-12" id="maindiv">
 

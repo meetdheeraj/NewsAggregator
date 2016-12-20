@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "2ae4b3d992eb14caa3c0"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b4e45485514d07b36a1f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -9042,7 +9042,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -9072,58 +9072,50 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var NewsBoxComponent = function (_React$Component) {
-	  _inherits(NewsBoxComponent, _React$Component);
+		_inherits(NewsBoxComponent, _React$Component);
 	
-	  function NewsBoxComponent() {
-	    _classCallCheck(this, NewsBoxComponent);
+		function NewsBoxComponent() {
+			_classCallCheck(this, NewsBoxComponent);
 	
-	    var _this = _possibleConstructorReturn(this, (NewsBoxComponent.__proto__ || Object.getPrototypeOf(NewsBoxComponent)).call(this));
+			return _possibleConstructorReturn(this, (NewsBoxComponent.__proto__ || Object.getPrototypeOf(NewsBoxComponent)).call(this));
+		}
 	
-	    _this.setUpdate = _this.setUpdate.bind(_this);
-	    return _this;
-	  }
+		_createClass(NewsBoxComponent, [{
+			key: 'render',
+			value: function render() {
+				console.log("Inside NewsBoxComponent :: " + this.props.news);
+				console.log("isUpdate: " + this.props.isUpdate);
+				var that = this;
 	
-	  _createClass(NewsBoxComponent, [{
-	    key: 'setUpdate',
-	    value: function setUpdate() {
-	      console.log("inside setUpdate newsBox");
-	      this.props.setUpdate();
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      console.log("NewsBoxComponent :: " + this.props.news);
-	      console.log(this.props.isUpdate);
+				return _react2.default.createElement(
+					'div',
+					{ className: 'newsBox' },
+					this.props.news.map(function (item) {
+						return _react2.default.createElement(
+							'div',
+							null,
+							_react2.default.createElement(
+								'span',
+								null,
+								_react2.default.createElement(_NewsItemComponent2.default, { item: item })
+							),
+							_react2.default.createElement(
+								'span',
+								null,
+								_react2.default.createElement(_SaveItemComponent2.default, { item: item, isUpdate: that.props.isUpdate })
+							),
+							_react2.default.createElement(
+								'span',
+								null,
+								_react2.default.createElement(_UpdateDeleteComponent2.default, { isUpdate: that.props.isUpdate, item: item })
+							)
+						);
+					})
+				);
+			}
+		}]);
 	
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'newsBox' },
-	        this.props.news.map(function (item) {
-	          return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              _react2.default.createElement(_NewsItemComponent2.default, { item: item })
-	            ),
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              _react2.default.createElement(_SaveItemComponent2.default, { item: item })
-	            ),
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              _react2.default.createElement(_UpdateDeleteComponent2.default, { item: item, setUpdate: that.setUpdate.bind(that) })
-	            )
-	          );
-	        })
-	      );
-	    }
-	  }]);
-	
-	  return NewsBoxComponent;
+		return NewsBoxComponent;
 	}(_react2.default.Component);
 	
 	exports.default = NewsBoxComponent;
@@ -13492,7 +13484,7 @@
 	
 	    var _this = _possibleConstructorReturn(this, (FavNewsComponent.__proto__ || Object.getPrototypeOf(FavNewsComponent)).call(this));
 	
-	    _this.state = { news: [] };
+	    _this.state = { news: [], isUpdate: true };
 	    return _this;
 	  }
 	
@@ -13501,9 +13493,6 @@
 	    value: function componentDidMount() {
 	
 	      console.log("componentDidMount");
-	      //this.props.news="get lost news";
-	      //console.log(this.props.item);
-	      //  this.setState({news:"hello"});
 	
 	      $.ajax({
 	        url: "/newsGet/viewNews",
@@ -13512,8 +13501,6 @@
 	        success: function (msg) {
 	          console.log("Retrieve Successfully!!" + msg);
 	          this.setState({ news: msg });
-	          //  return(<NewsBoxComponent news={msg}/>)
-	          //  var d=this.state.news;
 	        }.bind(this),
 	        error: function (err) {
 	          console.log("Error during Retrieving" + err);
@@ -13524,7 +13511,7 @@
 	    key: 'render',
 	    value: function render() {
 	
-	      return React.createElement(_NewsBoxComponent2.default, { news: this.state.news });
+	      return React.createElement(_NewsBoxComponent2.default, { isUpdate: this.state.isUpdate, news: this.state.news });
 	    }
 	  }]);
 	
@@ -13584,6 +13571,7 @@
 		_createClass(HomeComponent, [{
 			key: 'fetchNewsFromExternalAPI',
 			value: function fetchNewsFromExternalAPI(source) {
+				console.log("inside fetchNewsFromExternalAPI: " + source);
 	
 				$.ajax({
 					url: "https://newsapi.org/v1/articles?source=" + source + "&sortBy=top&apiKey=3931448f70a249d8b30ac6d29205122d",
@@ -13591,12 +13579,15 @@
 					dataType: 'JSON',
 	
 					success: function (msg) {
-						console.log(msg['articles']);
+						console.log("News Fetched Successfully");
+						console.log(msg);
 						var art = msg.articles;
 						this.setState({ articles: msg.articles });
 						console.log("main:: " + this.state.articles);
 					}.bind(this),
-					error: function (err) {}.bind(this)
+					error: function (err) {
+						cosnole.log("Main-Error Fetching News");
+					}.bind(this)
 				});
 			}
 		}, {
@@ -13623,7 +13614,7 @@
 					'div',
 					null,
 					_react2.default.createElement(_SearchComponent2.default, { news: a, data: d, newsSource: this.fetchNewsJSON.bind(this) }),
-					_react2.default.createElement(_NewsBoxComponent2.default, { news: a, isUpdate: this.state.isUpdate, setUpdate: this.setUpdate.bind(this) })
+					_react2.default.createElement(_NewsBoxComponent2.default, { news: a, isUpdate: this.state.isUpdate })
 				);
 			}
 		}]);
@@ -13694,7 +13685,7 @@
 	      console.log("login clicked");
 	      console.log(login);
 	      $.ajax({
-	        url: "/users/findUser",
+	        url: "/users/login",
 	        type: 'POST',
 	        data: login,
 	        success: function success(data) {
@@ -13713,25 +13704,39 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        "div",
-	        { className: "login-card" },
+	        { className: "container" },
 	        _react2.default.createElement(
-	          "div",
-	          null,
+	          "section",
+	          { id: "logincontent" },
 	          _react2.default.createElement(
-	            "h1",
-	            null,
-	            "Log-in"
-	          ),
-	          _react2.default.createElement("br", null)
-	        ),
-	        _react2.default.createElement(
-	          "form",
-	          null,
-	          _react2.default.createElement("input", { type: "text", name: "user", placeholder: "Username", ref: "user" }),
-	          _react2.default.createElement("br", null),
-	          _react2.default.createElement("input", { type: "password", name: "pass", placeholder: "Password", ref: "pass" }),
-	          _react2.default.createElement("br", null),
-	          _react2.default.createElement("input", { type: "submit", name: "Login", className: "login login-submit", value: "Login", onClick: this.check.bind(this) })
+	            "form",
+	            { action: "" },
+	            _react2.default.createElement(
+	              "h1",
+	              null,
+	              "Sign in..."
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              null,
+	              _react2.default.createElement("input", { type: "text", ref: "user", placeholder: "Username", required: "", id: "username" })
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              null,
+	              _react2.default.createElement("input", { type: "password", ref: "pass", placeholder: "Password", required: "", id: "password" })
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              null,
+	              _react2.default.createElement("input", { type: "submit", onClick: this.check.bind(this), value: "Log in" }),
+	              _react2.default.createElement(
+	                "a",
+	                { href: "#" },
+	                "Register"
+	              )
+	            )
+	          )
 	        )
 	      );
 	    }
@@ -13782,7 +13787,7 @@
 	        null,
 	        React.createElement(
 	          'nav',
-	          { className: 'navbar navbar-default' },
+	          { className: 'navbar navbar-inverse' },
 	          React.createElement(
 	            'div',
 	            { className: 'container-fluid' },
@@ -13876,34 +13881,10 @@
 	     function NewsItemComponent() {
 	          _classCallCheck(this, NewsItemComponent);
 	
-	          var _this = _possibleConstructorReturn(this, (NewsItemComponent.__proto__ || Object.getPrototypeOf(NewsItemComponent)).call(this));
-	
-	          _this.saveNews = _this.saveNews.bind(_this);
-	          return _this;
+	          return _possibleConstructorReturn(this, (NewsItemComponent.__proto__ || Object.getPrototypeOf(NewsItemComponent)).call(this));
 	     }
 	
 	     _createClass(NewsItemComponent, [{
-	          key: "saveNews",
-	          value: function saveNews() {
-	
-	               console.log("saveNews");
-	               var jsonStr = JSON.stringify(this.props.item);
-	               console.log(jsonStr);
-	               $.ajax({
-	                    url: "/newsGet/saveNews",
-	                    type: "POST",
-	                    dataType: 'APPLICATION/JSON',
-	                    data: this.props.item,
-	                    success: function (msg) {
-	                         console.log(msg);
-	                         console.log("Saved Successfully!!");
-	                    }.bind(this),
-	                    error: function (err) {
-	                         console.log("Error during AJAX Save");
-	                    }.bind(this)
-	               });
-	          }
-	     }, {
 	          key: "render",
 	          value: function render() {
 	               console.log("inside news item");
@@ -13995,12 +13976,12 @@
 	    key: "saveNews",
 	    value: function saveNews() {
 	
-	      console.log("saveNews");
+	      console.log("inside saveNews fn");
 	      console.log(this.props.item);
 	      $.ajax({
 	        url: "/newsGet/saveNews",
 	        type: "POST",
-	        dataType: 'APPLICATION/JSON',
+	
 	        data: this.props.item,
 	        success: function (msg) {
 	          console.log("Saved Successfully!!");
@@ -14008,7 +13989,7 @@
 	        }.bind(this),
 	        error: function (err) {
 	          console.log("Error during Save");
-	          alert("Error Occured");
+	          alert("Sorry. There was Error during save");
 	        }.bind(this)
 	      });
 	    }
@@ -14017,11 +13998,17 @@
 	    value: function render() {
 	      console.log("inside news item");
 	
-	      return _react2.default.createElement(
-	        "article",
-	        null,
-	        _react2.default.createElement("input", { type: "button", className: "btn btn-primary", value: "Save", onClick: this.saveNews })
-	      );
+	      var isUpdate = this.props.isUpdate;
+	      console.log("saveItemComp - isUpdate:" + isUpdate);
+	      if (!isUpdate) {
+	        return _react2.default.createElement(
+	          "article",
+	          null,
+	          _react2.default.createElement("input", { type: "button", className: "btn btn-primary", value: "Save", onClick: this.saveNews })
+	        );
+	      } else {
+	        return _react2.default.createElement("article", null);
+	      }
 	    }
 	  }]);
 	
@@ -14140,13 +14127,14 @@
 	
 			_this.updateSource = _this.updateSource.bind(_this);
 			_this.deleteSource = _this.deleteSource.bind(_this);
+	
 			return _this;
 		}
 	
 		_createClass(UpdateDeleteComponent, [{
 			key: "updateSource",
 			value: function updateSource() {
-				console.log("Update source");
+				console.log("UpdateDelete - Update source");
 				var obj = this.props.item;
 				console.log(obj.title);
 				console.log(this.refs.txtTitle.value);
@@ -14164,11 +14152,13 @@
 						console.log("Error during Update" + err);
 					}.bind(this)
 				});
+				console.log("inside UpdateDelete: " + this.props.isUpdate);
 				this.props.setUpdate();
 			}
 		}, {
 			key: "deleteSource",
 			value: function deleteSource() {
+	
 				$.ajax({
 					url: "/newsGet/deleteNews",
 					type: "DELETE",
@@ -14185,13 +14175,19 @@
 			key: "render",
 			value: function render() {
 	
-				return _react2.default.createElement(
-					"div",
-					null,
-					_react2.default.createElement("input", { type: "text", defaultValue: this.props.item.title, ref: "txtTitle" }),
-					_react2.default.createElement("input", { type: "button", name: "Update", value: "Update", onClick: this.updateSource }),
-					_react2.default.createElement("input", { type: "button", name: "Delete", value: "Delete", onClick: this.deleteSource })
-				);
+				var isUpdate = this.props.isUpdate;
+				console.log("hello:" + isUpdate);
+				if (isUpdate) {
+					return _react2.default.createElement(
+						"div",
+						{ className: "updateDelete" },
+						_react2.default.createElement("input", { type: "text", defaultValue: this.props.item.title, ref: "txtTitle" }),
+						_react2.default.createElement("input", { type: "button", className: "btn btn-primary", name: "Update", value: "Update", onClick: this.updateSource }),
+						_react2.default.createElement("input", { type: "button", className: "btn btn-primary", name: "Delete", value: "Delete", onClick: this.deleteSource })
+					);
+				} else {
+					return _react2.default.createElement("div", null);
+				}
 			}
 		}]);
 	

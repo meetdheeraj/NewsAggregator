@@ -20,8 +20,8 @@ router.put('/updateNews', function(req, res, next) {
   console.log("updateNews");
   var query = {'url':req.body.url};
   console.log(query);
-  req.body.title = req.body.title;
-  console.log(req.newData);
+  req.body.tags = req.body.tags;
+  
   News.findOneAndUpdate(query, req.body, {upsert:false}, function(err, doc){
     if (err) return res.send("Error during save");
     return res.send("succesfully saved");
@@ -87,17 +87,17 @@ router.post('/saveNews', function(req, res, next) {
     if (err) {
 
       console.error(err);
-      return res.status(500).send();
+      return res.send("Error during save");
     }
     else{
     console.log(savedNews);
     console.log(newsToSave.title);
 
-    return res.status(200).send();
+    return res.send("Saved Successfully");
   }
 
     });
 
-  res.send(req.body);
+  
 });
 module.exports = router;

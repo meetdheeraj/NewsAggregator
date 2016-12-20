@@ -6,7 +6,8 @@ var newsSchema = new mongoose.Schema({
     description: String,
     url: {type:String, unique: true},
     urlToImage: String,
-    publishedAt:String
+    publishedAt:String,
+    tags:String
 });
 var News = mongoose.model('newsitems', newsSchema);
 module.exports=News;

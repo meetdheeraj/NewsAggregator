@@ -10,6 +10,13 @@ var users = require('./routes/users');
 var register = require('./routes/register');
 var newsGet = require('./routes/newsGet');
 
+//passport
+var passport = require("passport");
+var LocalStrategy = require("passport-local").Strategy;
+var connectflash = require("connect-flash");
+var User=require('./models/user');
+
+
 //webpack integration
 var webpackDevMiddleware = require("webpack-dev-middleware");
 var webpack = require("webpack");
@@ -17,6 +24,11 @@ var webpackConfig = require("../webpack.config");
 var webpackHotMiddleware = require('webpack-hot-middleware');
 var app = express();
 var compiler = webpack(webpackConfig);
+
+//passport
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(connectflash());
 
 //webpack integration
 app.use(webpackDevMiddleware(compiler, {
@@ -95,5 +107,27 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//authentication using passport
+//Passport Require
+passport.use(new LocalStrategy(
+function(username, password, done) {
+  User.findOne({ username: username,password:password }, function (err, user) {
+    if (err) { 
+      console.log("passport error");
+      return done(err); }
+    if (!user) { 
+      console.log("passport not user");
+      return done(null, false); }
+    if (!user.verifyPassword(password)) { 
+      console.log("passport not password");
+      return done(null, false); }
+    return done(null, user);
+  });
+}
+));
+
+
+
 
 module.exports = app;
