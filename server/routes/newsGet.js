@@ -21,8 +21,9 @@ router.put('/updateNews', function(req, res, next) {
   var query = {'url':req.body.url};
   console.log(query);
   req.body.tags = req.body.tags;
+  console.log("tags :: "+req.body.tags);
   
-  News.findOneAndUpdate(query, req.body, {upsert:false}, function(err, doc){
+  News.findOneAndUpdate(query, req.body.tags, {upsert:false}, function(err, doc){
     if (err) return res.send("Error during save");
     return res.send("succesfully saved");
 });

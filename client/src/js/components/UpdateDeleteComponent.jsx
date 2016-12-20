@@ -116,7 +116,7 @@ return(
 										</div>
 
 											<div className="modal-footer">
-											<button className="btn btn-primary" type="button" data-dismiss="modal" onClick={this.updateSource} >Save Comments
+											<button className="btn btn-primary" type="button" data-dismiss="modal" onClick={this.updateSource} >Save Tags Here
 											</button>
 											
  											<button className="btn btn-success" type="button" data-dismiss="modal" >Close

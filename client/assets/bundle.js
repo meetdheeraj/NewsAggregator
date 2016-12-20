@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b4e45485514d07b36a1f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4bcc3ce1deb9f451d46d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -13704,7 +13704,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        "div",
-	        { className: "container" },
+	        { className: "loginContainer" },
 	        _react2.default.createElement(
 	          "section",
 	          { id: "logincontent" },
@@ -13891,7 +13891,7 @@
 	
 	               return _react2.default.createElement(
 	                    "article",
-	                    null,
+	                    { id: "newsItem" },
 	                    _react2.default.createElement(
 	                         "div",
 	                         { className: "col-12", id: "maindiv" },
@@ -14097,7 +14097,7 @@
 /* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -14125,21 +14125,23 @@
 	
 			var _this = _possibleConstructorReturn(this, (UpdateDeleteComponent.__proto__ || Object.getPrototypeOf(UpdateDeleteComponent)).call(this));
 	
+			_this.state = { tags: '' };
 			_this.updateSource = _this.updateSource.bind(_this);
 			_this.deleteSource = _this.deleteSource.bind(_this);
+			_this.changeValue = _this.changeValue.bind(_this);
 	
 			return _this;
 		}
 	
 		_createClass(UpdateDeleteComponent, [{
-			key: "updateSource",
+			key: 'updateSource',
 			value: function updateSource() {
 				console.log("UpdateDelete - Update source");
 				var obj = this.props.item;
 				console.log(obj.title);
-				console.log(this.refs.txtTitle.value);
-				obj.title = this.refs.txtTitle.value;
-				console.log(obj.title);
+	
+				obj.tags = this.state.tags;
+				console.log(obj.tags);
 				console.log();
 				$.ajax({
 					url: "/newsGet/updateNews",
@@ -14147,16 +14149,18 @@
 					data: this.props.item,
 					success: function (msg) {
 						console.log("Updated Successfully!!" + msg);
+						alert("Your change has been updated successfully.");
 					}.bind(this),
 					error: function (err) {
 						console.log("Error during Update" + err);
+						alert("There was an error during Update");
 					}.bind(this)
 				});
 				console.log("inside UpdateDelete: " + this.props.isUpdate);
-				this.props.setUpdate();
+				//this.props.setUpdate();
 			}
 		}, {
-			key: "deleteSource",
+			key: 'deleteSource',
 			value: function deleteSource() {
 	
 				$.ajax({
@@ -14172,21 +14176,134 @@
 				});
 			}
 		}, {
-			key: "render",
+			key: 'changeValue',
+			value: function changeValue(event) {
+				var commentValue = event.target.value;
+				this.setState({ comment: commentValue });
+				console.log(commentValue);
+			}
+		}, {
+			key: 'render',
 			value: function render() {
 	
 				var isUpdate = this.props.isUpdate;
 				console.log("hello:" + isUpdate);
+				var newsId = this.props.item._id;
+				var modalRef = "#" + newsId;
 				if (isUpdate) {
 					return _react2.default.createElement(
-						"div",
-						{ className: "updateDelete" },
-						_react2.default.createElement("input", { type: "text", defaultValue: this.props.item.title, ref: "txtTitle" }),
-						_react2.default.createElement("input", { type: "button", className: "btn btn-primary", name: "Update", value: "Update", onClick: this.updateSource }),
-						_react2.default.createElement("input", { type: "button", className: "btn btn-primary", name: "Delete", value: "Delete", onClick: this.deleteSource })
+						'article',
+						null,
+						_react2.default.createElement(
+							'a',
+							{ href: modalRef, role: 'button', 'data-toggle': 'modal', type: 'button', className: 'btn btn-primary' },
+							'Update'
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'modal fade', id: newsId },
+							_react2.default.createElement(
+								'div',
+								{ className: 'modal-dialog' },
+								_react2.default.createElement(
+									'div',
+									{ className: 'modal-content' },
+									_react2.default.createElement(
+										'div',
+										{ className: 'modal-header' },
+										_react2.default.createElement(
+											'button',
+											{ className: 'close', 'data-dismiss': 'modal' },
+											'X'
+										),
+										_react2.default.createElement(
+											'h4',
+											null,
+											'Add tags to story'
+										)
+									),
+									_react2.default.createElement(
+										'div',
+										{ className: 'modal-body' },
+										_react2.default.createElement(
+											'div',
+											{ className: 'container' },
+											_react2.default.createElement(
+												'div',
+												{ className: 'row jumbotron' },
+												_react2.default.createElement(
+													'article',
+													{ className: 'col-sm-12' },
+													_react2.default.createElement(
+														'article',
+														{ className: 'col-sm-6' },
+														_react2.default.createElement('img', { src: this.props.item.urlToImage, alt: 'image', width: '200', height: '200' })
+													),
+													_react2.default.createElement(
+														'article',
+														{ className: 'col-sm-6' },
+														_react2.default.createElement(
+															'h3',
+															null,
+															_react2.default.createElement(
+																'a',
+																{ href: '#' },
+																this.props.item.title
+															)
+														),
+														_react2.default.createElement(
+															'p',
+															null,
+															this.props.item.description
+														)
+													)
+												),
+												_react2.default.createElement(
+													'form',
+													{ className: 'form-vertical' },
+													_react2.default.createElement(
+														'div',
+														{ className: 'form-group' },
+														_react2.default.createElement(
+															'label',
+															{ className: 'col-lg-2 control-label', 'for': 'comment_input' },
+															'Tags'
+														),
+														_react2.default.createElement(
+															'div',
+															{ className: 'col-lg-10' },
+															_react2.default.createElement('input', { type: 'text', id: 'commentid', placeholder: 'Enter Tags', onChange: this.changeValue })
+														)
+													)
+												)
+											),
+											_react2.default.createElement(
+												'div',
+												{ className: 'modal-footer' },
+												_react2.default.createElement(
+													'button',
+													{ className: 'btn btn-primary', type: 'button', 'data-dismiss': 'modal', onClick: this.updateSource },
+													'Save Tags Here'
+												),
+												_react2.default.createElement(
+													'button',
+													{ className: 'btn btn-success', type: 'button', 'data-dismiss': 'modal' },
+													'Close'
+												)
+											)
+										)
+									)
+								)
+							)
+						),
+						_react2.default.createElement(
+							'button',
+							{ className: 'btn btn-primary', type: 'button', onClick: this.deleteSource },
+							'Delete'
+						)
 					);
 				} else {
-					return _react2.default.createElement("div", null);
+					return _react2.default.createElement('div', null);
 				}
 			}
 		}]);

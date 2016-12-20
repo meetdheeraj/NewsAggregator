@@ -112,6 +112,7 @@ app.use(function(err, req, res, next) {
 //Passport Require
 passport.use(new LocalStrategy(
 function(username, password, done) {
+  console.log("inside passport");
   User.findOne({ username: username,password:password }, function (err, user) {
     if (err) { 
       console.log("passport error");
@@ -119,14 +120,22 @@ function(username, password, done) {
     if (!user) { 
       console.log("passport not user");
       return done(null, false); }
-    if (!user.verifyPassword(password)) { 
-      console.log("passport not password");
-      return done(null, false); }
+    
     return done(null, user);
   });
 }
 ));
 
+//passport session
+passport.serializeUser(function(user, done) {
+done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+User.findById(id, function (err, user) {
+  done(err, user);
+});
+});
 
 
 

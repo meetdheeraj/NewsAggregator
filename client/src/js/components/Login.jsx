@@ -43,7 +43,7 @@ var login={
 
 render(){
 return (     
-<div className="container">
+<div className="loginContainer">
   <section id="logincontent">
     <form action="">
       <h1>Sign in...</h1>

@@ -20,11 +20,11 @@ router.get('/', function(req, res, next) {
 
 /* Find if user exists
 Validate user*/
-app.post('/login',
+router.post('/login',
   passport.authenticate('local'),
   function(req, res) {
-    alert("Authentication was successful!!");
-    res.redirect('/users/' + req.user.username);
+    
+    res.send("Successfully Logged In!");
   });
 
 
