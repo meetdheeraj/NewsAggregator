@@ -1,4 +1,6 @@
 import React from 'react';
+import {browserHistory} from react-router;
+
 export default class Login extends React.Component{
 constructor(){
     super();
@@ -30,13 +32,14 @@ var login={
     success: function(data)
     {
       console.log("inside success");
-      alert("Success");
+      alert("Login Successful");
+      browserHistory.push('/home');
     },
     error: function(err)
     {
       console.log(err);
       console.log("error!!!!");
-      alert("Error")
+      alert("username and/or password incorrect")
     }
   });
 }
