@@ -80,6 +80,27 @@ padding-top: 20px;
   
 }
 
+#heading{
+ margin-left: 36%;
+   margin-top: 7%;
+    text-decoration: underline;
+   font-size: 60px;
+   color:  #1a1a1a ;
+}
+
+#img{
+ color: black;
+   width: 35%;
+  
+   margin-left: 440px;
+}
+
+body{
+ background-color: #bec0c4 ;  
+ 
+  
+}
+
 /* login page*/
 /* Reset CSS */
 

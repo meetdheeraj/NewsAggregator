@@ -7,7 +7,7 @@
     "build": "node node_modules/webpack/bin/webpack.js",
     "serve": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "start": "node server/bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+	"test": "mocha"
   },
   "author": "Dheeraj <dheeraj.kalgutkar@wipro.com>",
   "license": "GNU",
@@ -27,7 +27,8 @@
     "react-if-comp": "0.0.7",
     "serve-favicon": "2.3.2",
     "superagent": "^2.3.0",
-    "superagent-auth-bearer": "0.0.1"
+    "superagent-auth-bearer": "0.0.1",
+	"assert": "^1.4.1"
   },
   "devDependencies": {
     "babel-core": "^6.18.0",
@@ -60,6 +61,9 @@
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-dev-server": "^1.16.2",
-    "webpack-hot-middleware": "^2.13.2"
+    "webpack-hot-middleware": "^2.13.2",
+	"chai": "^3.4.1",
+    "sinon": "^1.17.2",
+    "supertest": "^1.1.0"
   }
 }

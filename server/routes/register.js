@@ -10,11 +10,11 @@ var User=require("../models/user.js");
 
 
 router.post('/', function(req, res, next) {
-
+console.log("inside register route");
 
   var name=req.body.name;
-  var username=req.body['username'];
-  var password=req.body['password'];
+  var username=req.body.username;
+  var password=req.body.password;
 
 
   var newUser=new User();
@@ -25,15 +25,16 @@ router.post('/', function(req, res, next) {
   //save
   newUser.save(function (err, savedUser) {
   if (err) {
-
-    console.error(err);
-    return res.status(500).send();
-  }
-  else{
   console.log(savedUser);
   console.log(newUser.name+" "+newUser.username+" "+newUser.password);
 
-  return res.status(200).send();
+  return res.send("Error during save");
+    
+  }
+  else{
+
+  console.error(err);
+    return res.send("Saved Successfully");
 }
 
   });

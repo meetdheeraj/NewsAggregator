@@ -15,6 +15,7 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var connectflash = require("connect-flash");
 var User=require('./models/user');
+var data = require('./routes/data');
 
 
 //webpack integration
@@ -88,7 +89,8 @@ app.use('/updateNews', updateNews);
 app.use('/deleteNews', deleteNews);
 app.use('/viewNews', viewNews);
 */
-
+app.use('/data', data);
+//app.listen(8080);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

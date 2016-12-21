@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "4bcc3ce1deb9f451d46d"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "32f5ed8d25bae00d030e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -13690,12 +13690,13 @@
 	        data: login,
 	        success: function success(data) {
 	          console.log("inside success");
-	          alert("Success");
+	          alert("Login Successful");
 	        },
 	        error: function error(err) {
 	          console.log(err);
 	          console.log("error!!!!");
-	          alert("Error");
+	
+	          alert("username and/or password incorrect");
 	        }
 	      });
 	    }

@@ -15,7 +15,7 @@ router.post('/', function(req, res, next) {
 
 //update
 ////http://localhost:8080/newsGet/updateNews
-router.put('/updateNews', function(req, res, next) {
+router.put('/updateNews',isLoggedIn, function(req, res, next) {
 
   console.log("updateNews");
   var query = {'url':req.body.url};
@@ -33,17 +33,19 @@ router.put('/updateNews', function(req, res, next) {
 
 //delete
 ////http://localhost:8080/newsGet/deleteNews
-router.delete('/deleteNews', function(req, res, next) {
+router.delete('/deleteNews',isLoggedIn,function(req, res, next) {
 
   console.log("deleteNews");
   News.remove({ "url": req.body.url }, function(err) {
     if (!err) {
             //message.type = 'notification!';
-            console.log("Deleted Successfully");
+			console.log("Deleted Successfully");
+            res.send("Deleted Successfully");
     }
     else {
             //message.type = 'error';
             console.log("Error");
+			res.send("Error during delete");
     }
 });
   res.send(req.body);
@@ -70,7 +72,7 @@ console.log("---------------There was an error while fetching data--------------
 
 //save news
 //http://localhost:8080/newsGet/saveNews
-router.post('/saveNews', function(req, res, next) {
+router.post('/saveNews', isLoggedIn,function(req, res, next) {
 
   console.log("saveNews");
   //var newsAr=req.body.articles;
@@ -101,4 +103,18 @@ router.post('/saveNews', function(req, res, next) {
 
   
 });
+
+
+
+
+
+function isLoggedIn (req, res, next) {
+if(req.isAuthenticated()){
+return next()
+;}
+else {
+ res.json('not authenticated please log in ');
+}
+};
+
 module.exports = router;
